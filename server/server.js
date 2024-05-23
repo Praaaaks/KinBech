@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import bodyParser from "body-parser";
 
 import authRoutes from "./routes/auth.js"
 
@@ -10,6 +11,8 @@ const connection_url =
 
 const PORT = 5000;
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false}));
 app.use("/auth", authRoutes);
 
 mongoose
