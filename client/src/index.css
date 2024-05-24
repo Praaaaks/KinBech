@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+/* base styles */
+* {
+  margin: 0;
+  font-family: "Quicksand";
+  color: #333;
+  background-color: #eeb0eb;
+}
+
+/*Navigation bar*/
+.navbar {
+  padding: 12px;
+  display: flex;
+  max-width: 100%;
+  background-color: #000000;
+  justify-content: space-between;
+}
+.navbar .left-links {
+  align-items: left;
+  background-color: #000000;
+  padding: 5px;
+  font-size: 24px;
+}
+.navbar a {
+  margin-left: 16px;
+  text-decoration: none;
+  padding: 6px;
+  background-color: #000000;
+  color: azure;
+  display: inline-block;
+}
+.navbar a:hover {
+  color: #f1356d;
+}
+.navbar .right-links {
+  align-items: right;
+  background-color: #000000;
+  padding: 10px;
+}
+.navbar p {
+  margin-left: 16px;
+  text-decoration: none;
+  padding: 6px;
+  background-color: #000000;
+  color: azure;
+  display: inline;
+}
+.navbar p:hover {
+  color: #f1356d;
+  cursor: pointer;
+}
+.navbar button {
+  background-color: white;
+  display: inline;
+  border-radius: 20px;
+  border: none;
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+.navbar button:active {
+  background-color: gray;
+  cursor: pointer;
+}
+
+/*Sidebar*/
+.sidebar {
+  padding: 10px;
+  height: 575px;
+  width: 30%;
+  background-color: #98a0eb;
+}
+.sidebar h1{
+  background-color: inherit;
+  padding: 10px;
+  ;
+}
+.sidebar ul{
+  background-color: inherit;
+  padding: 20px;
+}
+.sidebar li{
+  background-color: inherit;
+}
