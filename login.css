@@ -1,0 +1,55 @@
+.log{
+    background-color: white;
+    position: absolute;
+   border: 2px solid white;           
+   width: 400px;
+   height: 50%;
+   display: inline-block;
+   align-items: center;
+   top: 250px;
+   left: 40%;    
+ }
+ #f{
+    position: relative;
+    left: 30%;
+    top: 10px;
+    padding: 10px;
+ }
+ #e{
+    position:relative;
+    font-size: large;
+    left: 5%;
+    top: 25px;   
+    padding: 10px;    
+ }
+ #g{
+    position: relative;
+    font-size: large;
+    left: 5%;
+    top: 35px;
+ }
+ #email{
+    position: relative;
+    left: 18%;
+    height: 25px;
+    
+ } 
+ #password {
+    position: relative;
+    left: 10%;
+    height: 18px;
+    padding: 5px;
+    margin: 10px;
+ }
+ #d{
+    position: relative;
+    left: 40%;
+    top: 55px;
+    width: 20%;
+    height: 8%;
+    font-size: large;
+    padding: 5px;
+    margin: 10px;
+    background-color: black;
+    color: white;
+ } 
