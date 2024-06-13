@@ -1,4 +1,5 @@
 import React from 'react';
+import { BsEnvelope, BsTelephone } from 'react-icons/bs';
 
 const Footer = () => {
     return(
@@ -10,8 +11,8 @@ const Footer = () => {
                             <h4>Contact Us:</h4>
                             <br/>
                             <div className='footer-text d-flex gap-20'>
-                                <p>Phone: 9860199571</p>
-                                <p>Email: praksatyal@gmail.com</p>
+                                <span><BsTelephone/> 9860199571</span>
+                                <span><BsEnvelope/> praksatyal@gmail.com</span>
                             </div>
                         </div>
                     </div>
