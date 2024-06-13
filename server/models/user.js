@@ -18,6 +18,14 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true,
         unique: true
+    },
+    myProducts: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product"
+    },
+    bookmarks: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product"
     }
 })
 

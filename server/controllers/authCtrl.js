@@ -7,6 +7,7 @@ const secret = "CE2022";
 export const signup = async(req, res) => {
     const { name, email, password, mobile } = req.body;
 
+    try{
     const oldUser = await User.findOne({ email });
     if(oldUser)
         return res.status(400).json({ message: "User already exists" });
@@ -21,6 +22,12 @@ export const signup = async(req, res) => {
     });
 
     res.status(201).json({ result });
+    console.log(result);
+    }
+    catch(error){
+        console.error("Error during user registration:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
 }
 
 export const login = async(req, res) => {
