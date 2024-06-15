@@ -5,20 +5,21 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    creator: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-    },
     price: {
-        type: Number,
+        type: String,
         required: true
     },
     description: String,
     tags: {
-        type: Array,
+        type: String,
         required: true
     },
+    bookmark_count: Number,
     image_url: String,
+    creator: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
 })
 
 const Product = mongoose.model("Product", productSchema);

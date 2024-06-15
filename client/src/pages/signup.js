@@ -33,7 +33,7 @@ const SignUp = () => {
             .post("/auth/signup", user)
             .then((response) => {
               window.alert("Registration successful!");
-              navigate("/");
+              navigate("/profile");
             })
             .catch((error) => {
               if (error.response.status === 400) {

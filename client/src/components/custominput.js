@@ -10,6 +10,7 @@ const CustomInput = (props) => {
                 placeholder = { props.placeholder }
                 className = { props.className }
                 value = { props.value }
+                accept={ props.accept }
                 required></input>
         </div>
     )

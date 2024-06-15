@@ -20,11 +20,11 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
     myProducts: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: [mongoose.Schema.Types.ObjectId],
         ref: "Product"
     },
     bookmarks: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: [mongoose.Schema.Types.ObjectId],
         ref: "Product"
     },
     image_url: String,

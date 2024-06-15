@@ -22,7 +22,6 @@ export const signup = async(req, res) => {
     });
 
     res.status(201).json({ result });
-    console.log(result);
     }
     catch(error){
         console.error("Error during user registration:", error);
@@ -58,4 +57,12 @@ export const login = async(req, res) => {
         mobile: oldUser.mobile,
         token: token
      });
+}
+
+export const getMe = async (req, res) => {
+    res.status(200).json(req.user);
+};
+
+export const logout = async (req, res) => {
+    res.status(200).clearCookie("jwtoken", { path: "/" }).send("Logout success");
 }

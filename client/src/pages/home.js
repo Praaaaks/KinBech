@@ -4,6 +4,7 @@ import { BsSearch } from "react-icons/bs";
 import Meta from "../components/meta";
 
 const Home = () => {
+
     return(
         <>
         <Meta title="KinBech" />
@@ -23,7 +24,6 @@ const Home = () => {
                             <li>Games and Toys</li>
                             <li>Furniture</li>
                             <li>Appliances</li>
-                            <li>Real Estate</li>
                             <li>Sports and Fitness</li>
                         </ul>
                     </div>

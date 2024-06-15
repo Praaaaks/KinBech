@@ -2,8 +2,10 @@ import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
-
+import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.js"
+import protectedRoutes from "./routes/protected.js"
+import productRoutes from "./routes/product.js"
 
 const app = express();
 
@@ -14,9 +16,15 @@ const PORT = 5000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true
+}));
+app.use(cookieParser());
 
 app.use("/auth", authRoutes);
+app.use("/", protectedRoutes);
+app.use("/product", productRoutes);
 
 mongoose
   .connect(connection_url)
