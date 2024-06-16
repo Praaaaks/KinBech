@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
-// import ProductCard from "../components/productcard";
+import axios from "axios";
+import ProductCard from "../components/productcard";
 import Meta from "../components/meta";
 
 const Home = () => {
+
+    const [products, setProducts] = useState([]);
+
+    const fetchProducts = async () => {
+        try {
+            const response = await axios.get('/product/popular');
+            setProducts(response.data);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchProducts();
+    })
 
     return(
         <>
@@ -31,7 +47,16 @@ const Home = () => {
                 <div className="col-8">
                     <div className="search-bar input-group mb-3">
                         <input type="text" className="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" />
-                        <span className="input-group-text" id="basic-addon2"> <BsSearch/> </span>
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"><BsSearch/></button>
+                    </div>
+                    <div className="product-list">
+                            {products.length > 0 ? (
+                                products.map((product) => (
+                                    <ProductCard key={product._id} product={product} />
+                                ))
+                            ) : (
+                                <p>No products available</p>
+                            )}
                     </div>
                 </div>
                 </div>

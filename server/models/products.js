@@ -14,12 +14,19 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    bookmark_count: Number,
+    bookmark_count: {
+        type: Number,
+        default: 0
+    },
     image_url: String,
     creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
+    bookmark_users: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "User"
+    }
 })
 
 const Product = mongoose.model("Product", productSchema);

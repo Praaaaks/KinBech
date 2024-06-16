@@ -66,3 +66,25 @@ export const getMe = async (req, res) => {
 export const logout = async (req, res) => {
     res.status(200).clearCookie("jwtoken", { path: "/" }).send("Logout success");
 }
+
+export const deleteProfile = async (req, res) => {
+    const currentEmail = req.user.email;
+    try {
+      await User.deleteOne({ email: currentEmail });
+      res
+        .status(200)
+        .clearCookie("jwtoken", { path: "/" })
+        .send("Delete Successful");
+    } catch (error) {
+      res.status(500).json({ message: "Something went wrong" });
+    }
+};
+
+export const getUser = async (req, res) => {
+    try {
+      const user = await User.findById(req.params._id);
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(404).json({ message: error.message });
+    }
+};

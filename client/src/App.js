@@ -19,7 +19,7 @@ function App() {
               <Route index element={ <Home/> } />
               <Route path='login' element={ <LogIn/> } />
               <Route path='signup' element={ <SignUp/> } />
-              <Route path='product' element={ <ProductPage/> } />
+              <Route path='product/:id' element={ <ProductPage/> } />
               <Route path='profile' element={ <ProfilePage/> } />
               <Route path='create' element={ <CreateProduct/> } />
             </Route>
