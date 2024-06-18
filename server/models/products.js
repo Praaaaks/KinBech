@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    bookmark_count: {
+    view_count: {
         type: Number,
         default: 0
     },
@@ -23,10 +23,6 @@ const productSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    bookmark_users: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: "User"
-    }
 })
 
 const Product = mongoose.model("Product", productSchema);

@@ -66,7 +66,7 @@ export function CreateProduct() {
   return (
     <>
       <Meta title="Create Product" />
-      <div className="create-product py-3">
+      <div className="create-product py-5">
         <div className="container justify-contents-center">
           <div className="col-8">
               <p className="fs-3 fw-bold">Create your product</p>

@@ -5,51 +5,54 @@ import CustomInput from "../components/custominput";
 import Meta from "../components/meta";
 
 const SignUp = () => {
-
     const navigate = useNavigate();
-
     const [user, setUser] = useState({
         name: "",
         email: "",
         password: "",
         mobile: "",
-    })
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser({
-          ...user,
-          [name]: value,
+            ...user,
+            [name]: value,
         });
     };
-    
+
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
 
     const btnSignup = async (e) => {
-        console.log(user);
         e.preventDefault();
         const { name, email, password, mobile } = user;
-        if (name && email && password && mobile) {
-          axios
-            .post("/auth/signup", user)
-            .then((response) => {
-              window.alert("Registration successful!");
-              navigate("/profile");
-            })
-            .catch((error) => {
-              if (error.response.status === 400) {
-                window.alert("Email already used");
-              } else {
-                window.alert(`There was error : ${error}`);
-              }
-            });
-        } else {
-          alert("Please type the fields correctly");
+        if (!validateEmail(email)) {
+            alert("Please enter a valid email address.");
+            return;
         }
-      };
+        if (name && email && password && mobile) {
+            try {
+                await axios.post("/auth/signup", user);
+                window.alert("Registration successful!");
+                navigate("/profile");
+            } catch (error) {
+                if (error.response && error.response.status === 400) {
+                    window.alert("Email already used");
+                } else {
+                    window.alert(`There was an error: ${error}`);
+                }
+            }
+        } else {
+            alert("Please fill in all the fields correctly.");
+        }
+    };
 
-    return(
+    return (
         <>
-            <Meta title="Sign Up"/>
+            <Meta title="Sign Up" />
             <div className="signup py-5">
                 <div className="row">
                     <div className="col-12">
@@ -80,7 +83,7 @@ const SignUp = () => {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
 export default SignUp;

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { BsBookmark, BsX } from "react-icons/bs";
+import { BsXLg } from "react-icons/bs";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Meta from "../components/meta";
 
 const ProductPage = () => {
+    const navigate = useNavigate();
     const [logged, setLogged] = useState(false);
-    const [isBookmark, setIsBookmark] = useState(false);
     const [info, setInfo] = useState(null);
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -53,29 +53,11 @@ const ProductPage = () => {
         getProduct();
     }, [id]);
 
-    useEffect(() => {
-        const checkBookmark = async () => {
-            try {
-                const res = await axios.get(`/product/checkbookmark/${id}`, {
-                    headers: {
-                        "Access-Control-Allow-Credentials": true,
-                        "Content-Type": "application/json",
-                    },
-                });
-                setIsBookmark(res.data);
-            } catch (error) {
-                setIsBookmark(false);
-            }
-        };
-
-        checkBookmark();
-    }, [id]);
-
-    const getUserById = async (userId) => {
+    const getUserById = async (user_id) => {
       try {
-          console.log("Fetching creator");
-          const response = await axios.get(`http://localhost:5000/auth/user/${userId}`);
-          console.log("Fetching creator 2");
+        //   console.log("Fetching creator");
+          const response = await axios.get(`http://localhost:5000/auth/user/${user_id}`);
+        //   console.log("Fetching creator 2");
           return response.data;
       } catch (error) {
           console.error('Error fetching user by ID:', error);
@@ -88,6 +70,7 @@ const ProductPage = () => {
         try {
           if (data && data.creator) {
               console.log(data);
+              console.log(data.creator);
               const user = await getUserById(data.creator);
               console.log(user);
               setCreator(user);
@@ -100,34 +83,6 @@ const ProductPage = () => {
     }
       fetchCreator();
   });
-
-    const btnAddBookmark = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.post(`/product/addbookmark/${id}`);
-            window.alert("Added to Bookmarks!");
-            setIsBookmark(true);
-        } catch (error) {
-            if (error.response && error.response.status === 400) {
-                window.alert("Already added");
-            } else {
-                window.alert("Something went wrong");
-            }
-        }
-    };
-
-    const btnDelBookmark = async (e) => {
-        e.preventDefault();
-        if (window.confirm("Are you sure?")) {
-            try {
-                await axios.post(`/product/deletebookmark/${id}`);
-                window.alert("Removed Bookmark");
-                setIsBookmark(false);
-            } catch (error) {
-                window.alert("Something went wrong!");
-            }
-        }
-    };
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -143,26 +98,29 @@ const ProductPage = () => {
                     <div className="row">
                         <div className="col-4">
                             <div className="product-image">
-                                <img src={data.image_url} alt="Product" />
+                                <img src={data.image_url} alt="Product" height="500" width ="350"/>
                             </div>
                         </div>
                         <div className="col-8">
                             <h3 className="product-title pb-4">{data.title}</h3>
-                            <p className="product-poster">{creator.name}</p>
+                            <p className="fs-5 fw-semibold">Poster:</p>
+                            <p className="product-poster">{creator ? creator.name : "Loading creator..."}</p>
+                            <p className="fs-5 fw-semibold">Contact Info:</p>
+                            <p className="product-poster-email">{creator ? creator.email : "Loading creator..."}</p>
+                            <p className="product-poster-number">{creator ? creator.mobile : "Loading creator..."}</p>
+                            <p className="fs-5 fw-semibold">Description:</p>
                             <p className="product-description">{data.description}</p>
+                            <p className="fs-5 fw-semibold">Price:</p>
                             <p className="product-price">Rs.{data.price}</p>
-                            {isBookmark ? (
-                                <button className="bookmark-btn p-2" onClick={btnDelBookmark}>
-                                    <span><BsBookmark /> Remove Bookmark</span>
-                                </button>
-                            ) : (
-                                <button className="bookmark-btn p-2" onClick={btnAddBookmark}>
-                                    <span><BsBookmark /> Bookmark</span>
-                                </button>
-                            )}
                             {logUser && (
-                                <button className="bookmark-btn p-2">
-                                    <span><BsX /> Delete</span>
+                                <button className="bookmark-btn btn-warning p-2 align-items-center" onClick={() => {
+                                    if(window.confirm("Are you sure?") === true){
+                                        axios
+                                            .delete(`/product/delete/${id}`)
+                                            .then(() => {navigate(`/profile`)})
+                                    }
+                                }}>
+                                    <BsXLg /> Delete
                                 </button>
                             )}
                         </div>

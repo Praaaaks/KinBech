@@ -79,6 +79,8 @@ a{
   padding: 10px;
   background-color: rgba(219, 216, 216, 0.845);
   border-radius: 15px;
+  flex: 1 1 calc(33.333% - 1rem); /* Adjust this to control the number of items per row */
+  box-sizing: border-box;
 }
 
 .product-card .product-title{
@@ -128,6 +130,13 @@ a{
 /*Search*/
 .search-bar .input-group-text{
   background-color: orange;
+}
+
+/*Product List*/
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 /*Profile Page*/

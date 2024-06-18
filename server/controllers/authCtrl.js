@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/user.js";
+import Product from "../models/products.js";
 
 const secret = "CE2022";
 
@@ -70,7 +71,7 @@ export const logout = async (req, res) => {
 export const deleteProfile = async (req, res) => {
     const currentEmail = req.user.email;
     try {
-      await User.deleteOne({ email: currentEmail });
+    await User.deleteOne({ email: currentEmail });
       res
         .status(200)
         .clearCookie("jwtoken", { path: "/" })

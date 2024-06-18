@@ -23,11 +23,6 @@ const userSchema = new mongoose.Schema({
         type: [mongoose.Schema.Types.ObjectId],
         ref: "Product"
     },
-    bookmarks: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: "Product"
-    },
-    image_url: String,
 })
 
 const User = mongoose.model("USER", userSchema);

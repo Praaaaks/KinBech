@@ -8,7 +8,7 @@ const ProfilePage = () => {
     const navigate = useNavigate();
     const [info, setInfo] = useState([]);
     const [products, setProducts] = useState([]);
-
+    const [haveproducts, setHaveproducts] = useState(false);
     
     const callProfile = async () => {
         try {
@@ -45,11 +45,29 @@ const ProfilePage = () => {
         }
     };
 
+    const checkProducts = async () => {
+        try{
+            if(products.length > 0){
+                setHaveproducts(true);
+            } else {
+                setHaveproducts(false);
+            }
+        } catch(error) {
+            console.error("Error: ", error);
+        }
+    }
+
     useEffect(() => {
         fetchProducts();
     })
     useEffect(() => {
         callProfile();
+    })
+    // useEffect(() => {
+    //     fetchBookmarked();
+    // })
+    useEffect(() => {
+        checkProducts();
     })
 
     const btnLogout = async (e) => {
@@ -68,40 +86,32 @@ const ProfilePage = () => {
             window.alert("Unsuccessfull");
           });
     };
-    
 
     return(
         <>
         <Meta title="Profile"/>
-        <div className="profile-page py-3">
+        <div className="profile-page py-4">
             <div className="container">
                 <div className="row">
-                    <div className="col-5">
-                        <img src="" alt=""/>
-                        <div class="input-group mb-3">
-                            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03">Upload</button>
-                            <input type="file" class="form-control" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" aria-label="Upload"/>
-                        </div>
-                    </div>
-                    <div className="col-5">
+                    <div className="col-8">
                         <h3 className="pb-4">Profile</h3>
-                        <p className="profile-name">{info.name}</p>
-                        <p className="profile-email">{info.email}</p>
-                        <p className="profile-mobile">{info.mobile}</p>
-                        <Link className="btn me-4" to="/create">Create Product</Link>
-                        <button className="btn me-4" onClick={btnLogout}>Log Out</button>
-                        <button className="btn me-4">Edit</button>
-                        <button className="btn me-4">Delete</button>
-                        <h4 className="py-2">My Products:</h4>
-                        <div className="product-list">
-                            {products.length > 0 ? (
-                                products.map((product) => (
-                                    <ProductCard key={product._id} product={product} />
-                                ))
-                            ) : (
-                                <p>No products available</p>
-                            )}
-                        </div>
+                        <p className="profile-name">Name: {info.name}</p>
+                        <p className="profile-email">Email: {info.email}</p>
+                        <p className="profile-mobile">Contact Number: {info.mobile}</p>
+                        <Link className="btn me-4 mb-2" to="/create">Create Product</Link>
+                        <button className="btn me-4 mb-2" onClick={btnLogout}>Log Out</button>
+                        <div className="w-100"></div>
+                                <div className="product-list">
+                                    <p className="fs-4 fw-bold">My Products: </p>
+                                    <div className="w-100"></div>
+                                    {haveproducts ? (
+                                        products.map((product) => (
+                                            <ProductCard key={product._id} product={product} />
+                                        ))
+                                    ) : (
+                                        <p>No products available</p>
+                                    )}
+                                </div>
                     </div>
                 </div>
             </div>
