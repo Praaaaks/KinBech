@@ -61,7 +61,7 @@ const Home = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="col-8">
+                <div className="col-9">
                     <div className="search-bar input-group mb-3">
                         <input type="text" className="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" value={searchQuery} onChange={handleSearchChange}/>
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2" onClick={handleSearchClick}><BsSearch/></button>

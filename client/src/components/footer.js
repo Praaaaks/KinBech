@@ -7,13 +7,15 @@ const Footer = () => {
             <footer className='footer-bottom py-3'>
                 <div className='container'>
                     <div className='row'>
-                        <div className='col'>
                             <h4>Contact Us:</h4>
                             <br/>
-                            <div className='footer-text d-flex gap-20'>
-                                <span><BsTelephone/> 9860199571</span>
-                                <span><BsEnvelope/> praksatyal@gmail.com</span>
-                            </div>
+                        <div className='col-2'>
+                                <p><BsTelephone/> 9860199571</p>
+                                <p><BsTelephone/> 9765346805</p>
+                        </div>
+                        <div className='col-4'>
+                                <p><BsEnvelope/> praksatyal@gmail.com</p>
+                                <p><BsEnvelope/> aviyankc89@gmail.com</p>
                         </div>
                     </div>
                 </div>

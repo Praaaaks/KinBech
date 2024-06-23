@@ -46,7 +46,7 @@ const Header = () => {
             <div className='container'>
                 <div className='row justify-content-between'>
                     <div className='col'>
-                        <Link to="/">KinBech</Link>
+                        <Link to="/"><p className='fs-3 fw-bold'>KinBech</p></Link>
                     </div>
                     {logged ? (<>
                     <div className='col-2 justify-content-end'>

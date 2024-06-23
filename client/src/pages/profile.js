@@ -93,7 +93,7 @@ const ProfilePage = () => {
         <div className="profile-page py-4">
             <div className="container">
                 <div className="row">
-                    <div className="col-8">
+                    <div className="col-9">
                         <h3 className="pb-4">Profile</h3>
                         <p className="profile-name">Name: {info.name}</p>
                         <p className="profile-email">Email: {info.email}</p>
